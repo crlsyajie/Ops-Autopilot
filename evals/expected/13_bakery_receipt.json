@@ -1,0 +1,28 @@
+{
+  "note": "Small cash receipt from a known supplier.",
+  "expected_route": "auto",
+  "expected_issues": [],
+  "extraction": {
+    "doc_type": "receipt",
+    "counterparty": "Panaderia Dos Hermanas",
+    "counterparty_email": "",
+    "document_number": "AR-2290",
+    "document_date": "2026-11-03",
+    "due_date": "",
+    "currency": "PHP",
+    "line_items": [
+      {
+        "description": "Pan de coco",
+        "quantity": 16,
+        "unit_price": 35,
+        "amount": 560
+      }
+    ],
+    "subtotal": null,
+    "tax": null,
+    "total": 560,
+    "bank_account": "",
+    "confidence": 0.95,
+    "notes": "Paid in cash."
+  }
+}

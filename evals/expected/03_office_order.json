@@ -1,0 +1,34 @@
+{
+  "note": "Taglish customer order. Recorded and a reply drafted (not sent).",
+  "expected_route": "auto",
+  "expected_issues": [],
+  "extraction": {
+    "doc_type": "customer_order",
+    "counterparty": "Andrea Santos",
+    "counterparty_email": "andrea.santos@example.com",
+    "document_number": "",
+    "document_date": "2026-11-02",
+    "due_date": "",
+    "currency": "PHP",
+    "line_items": [
+      {
+        "description": "Iced Spanish latte",
+        "quantity": 30,
+        "unit_price": 150,
+        "amount": 4500
+      },
+      {
+        "description": "Ensaymada box (12 pcs)",
+        "quantity": 2,
+        "unit_price": 480,
+        "amount": 960
+      }
+    ],
+    "subtotal": null,
+    "tax": null,
+    "total": 5460,
+    "bank_account": "",
+    "confidence": 0.93,
+    "notes": "Pickup at 9am on November 7."
+  }
+}

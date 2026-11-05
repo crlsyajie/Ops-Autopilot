@@ -1,0 +1,34 @@
+{
+  "note": "Clean invoice from a known supplier. Should be recorded with no person involved.",
+  "expected_route": "auto",
+  "expected_issues": [],
+  "extraction": {
+    "doc_type": "invoice",
+    "counterparty": "Bukid Coffee Beans Trading",
+    "counterparty_email": "",
+    "document_number": "INV-2026-0412",
+    "document_date": "2026-10-28",
+    "due_date": "2026-11-27",
+    "currency": "PHP",
+    "line_items": [
+      {
+        "description": "Benguet Arabica, medium roast",
+        "quantity": 10,
+        "unit_price": 950,
+        "amount": 9500
+      },
+      {
+        "description": "Batangas Barako (Liberica)",
+        "quantity": 5,
+        "unit_price": 720,
+        "amount": 3600
+      }
+    ],
+    "subtotal": 13100,
+    "tax": 1572,
+    "total": 14672,
+    "bank_account": "BPI 1234-5678-90",
+    "confidence": 0.97,
+    "notes": ""
+  }
+}

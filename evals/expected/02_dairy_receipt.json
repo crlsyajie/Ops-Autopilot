@@ -1,0 +1,34 @@
+{
+  "note": "VAT-inclusive receipt: the lines match the total, and subtotal + VAT match the total.",
+  "expected_route": "auto",
+  "expected_issues": [],
+  "extraction": {
+    "doc_type": "receipt",
+    "counterparty": "Luzon Dairy Farms Inc.",
+    "counterparty_email": "",
+    "document_number": "88213",
+    "document_date": "2026-10-30",
+    "due_date": "",
+    "currency": "PHP",
+    "line_items": [
+      {
+        "description": "Fresh milk 1L",
+        "quantity": 24,
+        "unit_price": 95,
+        "amount": 2280
+      },
+      {
+        "description": "Cooking cream 250ml",
+        "quantity": 6,
+        "unit_price": 180,
+        "amount": 1080
+      }
+    ],
+    "subtotal": 3000,
+    "tax": 360,
+    "total": 3360,
+    "bank_account": "",
+    "confidence": 0.95,
+    "notes": "Paid via GCash."
+  }
+}

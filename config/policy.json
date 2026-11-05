@@ -1,0 +1,8 @@
+{
+  "home_currency": "PHP",
+  "auto_approve_limit": 50000,
+  "min_confidence": 0.85,
+  "total_tolerance": 1.0,
+  "require_known_supplier": true,
+  "manual_minutes_per_document": 6
+}

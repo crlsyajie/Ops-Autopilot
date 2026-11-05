@@ -1,0 +1,30 @@
+{
+  "note": "Classic payment-fraud pattern: a known supplier's bank account suddenly changes.",
+  "expected_route": "review",
+  "expected_issues": [
+    "bank_details_changed"
+  ],
+  "extraction": {
+    "doc_type": "invoice",
+    "counterparty": "Luzon Dairy Farms Inc.",
+    "counterparty_email": "",
+    "document_number": "LDF-5521",
+    "document_date": "2026-11-02",
+    "due_date": "2026-11-17",
+    "currency": "PHP",
+    "line_items": [
+      {
+        "description": "Fresh milk 1L",
+        "quantity": 40,
+        "unit_price": 95,
+        "amount": 3800
+      }
+    ],
+    "subtotal": null,
+    "tax": null,
+    "total": 3800,
+    "bank_account": "UnionBank 1099-8877-6655",
+    "confidence": 0.94,
+    "notes": "Asks for payment to a new bank account, urgently."
+  }
+}

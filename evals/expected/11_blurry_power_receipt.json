@@ -1,0 +1,27 @@
+{
+  "note": "Unreadable amount. A person must check the paper receipt.",
+  "expected_route": "review",
+  "expected_issues": [
+    "low_confidence"
+  ],
+  "extraction": {
+    "doc_type": "receipt",
+    "counterparty": "Kuryente Power Co.",
+    "counterparty_email": "",
+    "document_number": "",
+    "document_date": "",
+    "due_date": "",
+    "currency": "PHP",
+    "line_items": [],
+    "subtotal": null,
+    "tax": null,
+    "total": null,
+    "bank_account": "",
+    "confidence": 0.45,
+    "notes": "Blurry photo; amount and receipt number unreadable."
+  },
+  "check_fields": [
+    "doc_type",
+    "counterparty"
+  ]
+}

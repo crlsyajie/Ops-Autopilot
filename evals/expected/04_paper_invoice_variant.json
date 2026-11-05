@@ -1,0 +1,35 @@
+{
+  "note": "Supplier name is a variant and there is no due date: both soft issues. The agent should match the supplier and add its 30-day terms (due 2026-11-24).",
+  "expected_route": "auto",
+  "expected_issues": [],
+  "extraction": {
+    "doc_type": "invoice",
+    "counterparty": "Manila Paper Supply Company",
+    "counterparty_email": "",
+    "document_number": "MPS-7781",
+    "document_date": "2026-10-25",
+    "due_date": "",
+    "currency": "PHP",
+    "line_items": [
+      {
+        "description": "12oz hot cups, kraft",
+        "quantity": 1000,
+        "unit_price": 4.5,
+        "amount": 4500.0
+      },
+      {
+        "description": "Sip lids, black",
+        "quantity": 1000,
+        "unit_price": 1.2,
+        "amount": 1200.0
+      }
+    ],
+    "subtotal": null,
+    "tax": null,
+    "total": 5700,
+    "bank_account": "Metrobank 381-7-38100552",
+    "confidence": 0.95,
+    "notes": ""
+  },
+  "replay_route": "review"
+}

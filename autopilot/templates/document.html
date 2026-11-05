@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ d.filename }} · Ops Autopilot</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <h1><a href="/">Ops Autopilot</a> / {{ d.filename }}</h1>
+  <span class="chip s-{{ d.status }}">{{ d.status | replace('_', ' ') }}</span>
+</header>
+<main>
+  {% set e = d.extraction or {} %}
+  <div class="grid2">
+    <section>
+      <h2>What was read</h2>
+      {% if e %}
+      <table>
+        <tr><th>Type</th><td>{{ e.doc_type }}</td></tr>
+        <tr><th>From</th><td>{{ e.counterparty }} {% if e.counterparty_email %}<span class="muted">· {{ e.counterparty_email }}</span>{% endif %}</td></tr>
+        <tr><th>Number</th><td>{{ e.document_number }}</td></tr>
+        <tr><th>Date / due</th><td>{{ e.document_date }} / {{ e.due_date }}</td></tr>
+        <tr><th>Total</th><td>{% if e.total is not none %}{{ e.currency }} {{ '{:,.2f}'.format(e.total) }}{% endif %}</td></tr>
+        <tr><th>Pay to</th><td>{{ e.bank_account }}</td></tr>
+        <tr><th>Confidence</th><td>{{ (e.confidence * 100) | round | int }}%</td></tr>
+        {% if e.notes %}<tr><th>Notes</th><td>{{ e.notes }}</td></tr>{% endif %}
+      </table>
+      {% if e.line_items %}
+      <div class="scroll"><table>
+        <tr><th>Item</th><th class="num">Qty</th><th class="num">Price</th><th class="num">Amount</th></tr>
+        {% for i in e.line_items %}
+        <tr><td>{{ i.description }}</td><td class="num">{{ '%g' % i.quantity }}</td><td class="num">{{ '{:,.2f}'.format(i.unit_price) }}</td><td class="num">{{ '{:,.2f}'.format(i.amount) }}</td></tr>
+        {% endfor %}
+      </table></div>
+      {% endif %}
+      {% else %}<p class="muted">{{ d.error or 'Not extracted yet.' }}</p>{% endif %}
+    </section>
+
+    <section>
+      <h2>Decision</h2>
+      <p><strong>{{ d.route or '-' }}</strong> · {{ d.reason or '' }}</p>
+      {% for i in d.issues or [] %}
+      <div class="issue {{ i.severity }}"><strong>{{ i.code }}</strong> ({{ 'only a person can clear this' if i.severity == 'block' else 'the agent may clear this' }})<br>{{ i.message }}</div>
+      {% endfor %}
+      {% if d.resolution %}
+      <h2 style="margin-top:14px">Triage agent recommendation</h2>
+      <p><strong>{{ d.resolution.action | replace('_', ' ') }}</strong> ({{ (d.resolution.confidence * 100) | round | int }}% sure) · {{ d.resolution.reason }}</p>
+      {% endif %}
+
+      {% if d.status == 'needs_review' %}
+      <h2 style="margin-top:14px">Your call</h2>
+      <form action="/documents/{{ d.id }}/approve" method="post" style="display:grid; gap:10px">
+        <div class="row">
+          <label>Reviewer<input type="text" name="reviewer" value="owner"></label>
+          <label>Fix supplier / customer<input type="text" name="counterparty" placeholder="{{ e.counterparty }}"></label>
+          <label>Fix total<input type="text" name="total" placeholder="{{ e.total }}"></label>
+          <label>Fix due date<input type="date" name="due_date"></label>
+        </div>
+        <div><button type="submit">Approve and record</button></div>
+      </form>
+      <form action="/documents/{{ d.id }}/reject" method="post" class="row" style="margin-top:10px">
+        <input type="hidden" name="reviewer" value="owner">
+        <input type="text" name="reason" placeholder="Reason for rejecting">
+        <button class="secondary" type="submit">Reject</button>
+      </form>
+      {% endif %}
+      <p class="muted">AI cost ${{ '%.4f' % (d.cost_usd or 0) }} · {{ d.input_tokens or 0 }} in / {{ d.output_tokens or 0 }} out tokens · {{ '%.1f' % ((d.latency_ms or 0) / 1000) }}s · attempt {{ d.attempts }}{% if d.reviewed_by %} · reviewed by {{ d.reviewed_by }}{% endif %}</p>
+    </section>
+  </div>
+
+  <div class="grid2">
+    <section>
+      <h2>Original</h2>
+      <pre>{{ d.preview }}</pre>
+    </section>
+    <section>
+      <h2>Trace</h2>
+      <ol class="trace">
+        {% for ev in events %}
+        <li><span class="step">{{ ev.step }}</span> <span class="muted">{{ ev.ts }}</span>
+          {% if ev.detail %}<pre>{{ ev.detail | tojson(indent=2) }}</pre>{% endif %}</li>
+        {% endfor %}
+      </ol>
+    </section>
+  </div>
+</main>
+</body>
+</html>

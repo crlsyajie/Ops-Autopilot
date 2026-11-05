@@ -1,0 +1,36 @@
+{
+  "note": "Lines add up to 3,180 but the total says 3,380.",
+  "expected_route": "review",
+  "expected_issues": [
+    "total_mismatch"
+  ],
+  "extraction": {
+    "doc_type": "invoice",
+    "counterparty": "Panaderia Dos Hermanas",
+    "counterparty_email": "",
+    "document_number": "PDH-1093",
+    "document_date": "2026-10-31",
+    "due_date": "2026-11-07",
+    "currency": "PHP",
+    "line_items": [
+      {
+        "description": "Pandesal",
+        "quantity": 300,
+        "unit_price": 5,
+        "amount": 1500
+      },
+      {
+        "description": "Ensaymada",
+        "quantity": 48,
+        "unit_price": 35,
+        "amount": 1680
+      }
+    ],
+    "subtotal": null,
+    "tax": null,
+    "total": 3380,
+    "bank_account": "GCash 0917-555-0142",
+    "confidence": 0.95,
+    "notes": ""
+  }
+}

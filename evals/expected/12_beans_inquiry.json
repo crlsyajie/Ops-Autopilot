@@ -1,0 +1,29 @@
+{
+  "note": "An order with no price yet: a person must quote it.",
+  "expected_route": "review",
+  "expected_issues": [
+    "missing_total"
+  ],
+  "extraction": {
+    "doc_type": "customer_order",
+    "counterparty": "Miguel Reyes",
+    "counterparty_email": "miguel.r@example.com",
+    "document_number": "",
+    "document_date": "2026-11-03",
+    "due_date": "",
+    "currency": "PHP",
+    "line_items": [],
+    "subtotal": null,
+    "tax": null,
+    "total": null,
+    "bank_account": "",
+    "confidence": 0.9,
+    "notes": "Asks for the price; wants pickup on Saturday."
+  },
+  "check_fields": [
+    "doc_type",
+    "counterparty",
+    "counterparty_email",
+    "total"
+  ]
+}

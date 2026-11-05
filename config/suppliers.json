@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Bukid Coffee Beans Trading",
+    "aliases": ["Bukid Coffee", "Bukid Coffee Trading"],
+    "payment_terms_days": 30,
+    "bank_account": "BPI 1234-5678-90"
+  },
+  {
+    "name": "Luzon Dairy Farms Inc.",
+    "aliases": ["Luzon Dairy", "LDF"],
+    "payment_terms_days": 15,
+    "bank_account": "BDO 0045-2210-77"
+  },
+  {
+    "name": "Manila Paper Supply Co.",
+    "aliases": ["Manila Paper Supply", "MPS Co."],
+    "payment_terms_days": 30,
+    "bank_account": "Metrobank 381-7-38100552"
+  },
+  {
+    "name": "Panaderia Dos Hermanas",
+    "aliases": ["Dos Hermanas Bakery"],
+    "payment_terms_days": 7,
+    "bank_account": "GCash 0917-555-0142"
+  },
+  {
+    "name": "Kuryente Power Co.",
+    "aliases": ["Kuryente"],
+    "payment_terms_days": 14,
+    "bank_account": "Landbank 0012-3456-78"
+  }
+]

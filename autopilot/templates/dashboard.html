@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ops Autopilot</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <h1>Ops Autopilot</h1>
+  <span class="mode">Kapehan sa Kanto · model: {{ m.model }}{% if not m.live_model %} (offline replay, no API key){% endif %}</span>
+</header>
+<main>
+  <div class="kpis">
+    <div class="kpi"><div class="v">{{ m.documents }}</div><div class="l">Documents</div></div>
+    <div class="kpi"><div class="v">{{ (m.auto_rate * 100) | round | int }}%</div><div class="l">Handled automatically</div></div>
+    <div class="kpi"><div class="v">{{ m.review_queue }}</div><div class="l">Waiting for review</div></div>
+    <div class="kpi"><div class="v">{{ m.failed }}</div><div class="l">Failed</div></div>
+    <div class="kpi"><div class="v">{{ m.hours_saved }}h</div><div class="l">Hours saved (est.)</div></div>
+    <div class="kpi"><div class="v">${{ '%.3f' % m.avg_cost_usd }}</div><div class="l">AI cost per doc</div></div>
+  </div>
+
+  <section>
+    <h2>Add a document</h2>
+    <div class="row">
+      <form action="/upload" method="post" enctype="multipart/form-data" class="row">
+        <input type="file" name="file" required accept=".txt,.md,.csv,.eml,.pdf,.png,.jpg,.jpeg,.webp">
+        <button type="submit">Upload and process</button>
+      </form>
+      <form action="/run-inbox" method="post"><button class="secondary" type="submit">Process inbox folder</button></form>
+    </div>
+    <p class="muted">Auto-approve limit: {{ policy.home_currency }} {{ '{:,.0f}'.format(policy.auto_approve_limit) }} · minimum confidence {{ (policy.min_confidence * 100) | int }}% · estimate of {{ policy.manual_minutes_per_document | int }} min saved per automatic document</p>
+  </section>
+
+  <section>
+    <h2>Review queue ({{ queue | length }})</h2>
+    {% if queue %}
+    <div class="scroll"><table>
+      <tr><th>File</th><th>Type</th><th>From</th><th class="num">Total</th><th>Why</th></tr>
+      {% for d in queue %}
+      <tr>
+        <td><a href="/documents/{{ d.id }}">{{ d.filename }}</a></td>
+        <td>{{ d.doc_type or '' }}</td>
+        <td>{{ d.counterparty or '' }}</td>
+        <td class="num">{% if d.total is not none %}{{ d.currency }} {{ '{:,.2f}'.format(d.total) }}{% endif %}</td>
+        <td>{% for i in d.issues or [] %}<span class="chip">{{ i.code }}</span> {% endfor %}</td>
+      </tr>
+      {% endfor %}
+    </table></div>
+    {% else %}<p class="muted">Nothing to review.</p>{% endif %}
+  </section>
+
+  <section>
+    <h2>Recent documents</h2>
+    {% if recent %}
+    <div class="scroll"><table>
+      <tr><th>File</th><th>Status</th><th>Type</th><th>From</th><th class="num">Total</th><th class="num">AI cost</th><th class="num">Time</th></tr>
+      {% for d in recent %}
+      <tr>
+        <td><a href="/documents/{{ d.id }}">{{ d.filename }}</a></td>
+        <td><span class="chip s-{{ d.status }}">{{ d.status | replace('_', ' ') }}</span></td>
+        <td>{{ d.doc_type or '' }}</td>
+        <td>{{ d.counterparty or '' }}</td>
+        <td class="num">{% if d.total is not none %}{{ d.currency }} {{ '{:,.2f}'.format(d.total) }}{% endif %}</td>
+        <td class="num">${{ '%.4f' % (d.cost_usd or 0) }}</td>
+        <td class="num">{{ '%.1f' % ((d.latency_ms or 0) / 1000) }}s</td>
+      </tr>
+      {% endfor %}
+    </table></div>
+    {% else %}<p class="muted">No documents yet. Upload one, or run <code>python -m autopilot demo</code>.</p>{% endif %}
+  </section>
+</main>
+</body>
+</html>

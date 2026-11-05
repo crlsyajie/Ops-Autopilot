@@ -1,0 +1,36 @@
+{
+  "note": "Valid invoice, but above the 50,000 auto-approve limit.",
+  "expected_route": "review",
+  "expected_issues": [
+    "over_limit"
+  ],
+  "extraction": {
+    "doc_type": "invoice",
+    "counterparty": "Bukid Coffee Beans Trading",
+    "counterparty_email": "",
+    "document_number": "INV-2026-0430",
+    "document_date": "2026-11-01",
+    "due_date": "2026-12-01",
+    "currency": "PHP",
+    "line_items": [
+      {
+        "description": "Commercial burr grinder (refurbished)",
+        "quantity": 1,
+        "unit_price": 48000,
+        "amount": 48000
+      },
+      {
+        "description": "Benguet Arabica",
+        "quantity": 10,
+        "unit_price": 950,
+        "amount": 9500
+      }
+    ],
+    "subtotal": null,
+    "tax": null,
+    "total": 57500,
+    "bank_account": "BPI 1234-5678-90",
+    "confidence": 0.96,
+    "notes": ""
+  }
+}

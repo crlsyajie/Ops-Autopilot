@@ -1,0 +1,19 @@
+BUKID COFFEE BEANS TRADING
+Brgy. Poblacion, La Trinidad, Benguet  |  TIN 123-456-789-000
+
+SALES INVOICE                                   No. INV-2026-0412
+Date: October 28, 2026                          Terms: 30 days
+Due: November 27, 2026
+
+Bill to: Kapehan sa Kanto, 14 Maginhawa St., Quezon City
+
+QTY   DESCRIPTION                         UNIT PRICE      AMOUNT
+10 kg Benguet Arabica, medium roast         950.00       9,500.00
+ 5 kg Batangas Barako (Liberica)            720.00       3,600.00
+
+                                   Subtotal             13,100.00
+                                   VAT 12%               1,572.00
+                                   TOTAL DUE        PHP 14,672.00
+
+Please pay to: BPI 1234-5678-90 (Bukid Coffee Beans Trading)
+Maraming salamat!

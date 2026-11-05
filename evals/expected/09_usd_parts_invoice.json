@@ -1,0 +1,31 @@
+{
+  "note": "New foreign supplier billing in USD.",
+  "expected_route": "review",
+  "expected_issues": [
+    "foreign_currency",
+    "unknown_supplier"
+  ],
+  "extraction": {
+    "doc_type": "invoice",
+    "counterparty": "Nordic Grind Parts AB",
+    "counterparty_email": "",
+    "document_number": "NG-2201",
+    "document_date": "2026-10-20",
+    "due_date": "2026-11-19",
+    "currency": "USD",
+    "line_items": [
+      {
+        "description": "Replacement burr set 64mm",
+        "quantity": 2,
+        "unit_price": 120,
+        "amount": 240
+      }
+    ],
+    "subtotal": null,
+    "tax": null,
+    "total": 240,
+    "bank_account": "",
+    "confidence": 0.96,
+    "notes": ""
+  }
+}
